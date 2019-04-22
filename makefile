@@ -1,8 +1,11 @@
+LIBS = $(shell ncursesw5-config --libs)
+FLAGS = $(shell ncursesw5-config --cflags)
+
 matrix : matrix.o
-	gcc matrix.o -lncursesw -ltinfo -o matrix
+	gcc matrix.o $(LIBS) -o matrix
 
 matrix.o : matrix.c
-	gcc -g -c matrix.c -D_GNU_SOURCE -D_DEFAULT_SOURCE -I/usr/include/ncursesw
+	gcc -c matrix.c $(FLAGS)
 
 clean : 
 	rm matrix matrix.o
